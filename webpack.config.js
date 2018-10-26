@@ -33,7 +33,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           plugins: ['lodash'],
-          presets: [['env'], 'react']
+          presets: [['@babel/preset-env'], '@babel/preset-react']
         }
       },
       {
