@@ -1,14 +1,20 @@
 const path = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+};
 
 module.exports = {
   entry: './src/App.js',
   output: {
-    filename: 'main.js',
-    chunkFilename: '[name].js'
+    filename: 'main.[hash].js',
+    chunkFilename: '[name].[hash].js'
   },
   optimization: {
     splitChunks: {
@@ -39,8 +45,11 @@ module.exports = {
   plugins: [
     new LodashModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles.css',
-      chunkFilename: '[name].css'
+      filename: 'styles.[hash].css',
+      chunkFilename: '[name].[hash].css'
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
@@ -61,9 +70,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'style-loader'
-            : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: { importLoaders: 3, sourceMap: true, modules: true }
