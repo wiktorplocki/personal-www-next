@@ -2,13 +2,33 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
 
 module.exports = {
   entry: './src/App.js',
+  output: {
+    filename: 'main.js',
+    chunkFilename: '[name].js'
+  },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-      name: true
+      cacheGroups: {
+        default: false,
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /node_modules/,
+          priority: 20
+        },
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'async',
+          priority: 10,
+          reuseExistingChunk: true,
+          enforce: true
+        }
+      }
     }
   },
   devServer: {
@@ -19,11 +39,13 @@ module.exports = {
   plugins: [
     new LodashModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: 'styles.css',
+      chunkFilename: '[name].css'
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new AsyncChunkNames()
   ],
   module: {
     rules: [
@@ -44,7 +66,7 @@ module.exports = {
             : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { importLoaders: 1, sourceMap: true }
+            options: { importLoaders: 3, sourceMap: true, modules: true }
           },
           { loader: 'postcss-loader', options: { sourceMap: true } },
           { loader: 'sass-loader', options: { sourceMap: true } }

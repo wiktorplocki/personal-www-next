@@ -5709,6 +5709,10 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+webpack-async-chunk-names-plugin@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/webpack-async-chunk-names-plugin/-/webpack-async-chunk-names-plugin-0.1.1.tgz#ebb8deda59887603331ff2cabbaee5b853fe0bb5"
+
 webpack-cli@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.1.2.tgz#17d7e01b77f89f884a2bbf9db545f0f6a648e746"
