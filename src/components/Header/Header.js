@@ -7,7 +7,11 @@ import {
   NavLink,
   Navbar,
   NavbarBrand,
-  NavbarToggler
+  NavbarToggler,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -34,9 +38,24 @@ const Header = React.memo(function Header() {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to="/contact">
-              Contact
-            </NavLink>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Contact
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <NavLink href="mailto:wiktor.plocki@gmail.com">Email</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="https://github.com/wiktorplocki">
+                    GitHub
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="#">LinkedIn</NavLink>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </NavItem>
         </Nav>
       </Collapse>
