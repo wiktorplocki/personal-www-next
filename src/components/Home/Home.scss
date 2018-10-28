@@ -1,0 +1,47 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 50px);
+  background-position: center center;
+  background-size: cover;
+  &h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .masthead {
+    p {
+      font-size: 1.15rem;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    height: 90vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 0;
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .masthead {
+    h1 {
+      font-size: 4rem;
+    }
+  }
+}
+
+section {
+  padding: 8rem 0;
+}
