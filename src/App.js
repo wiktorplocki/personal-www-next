@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './stylesheets/main.scss';
 
 import Header from './components/Header/Header';
+
 const Home = lazy(() => import('./components/Home/Home'));
 const App = () => (
   <Container fluid>

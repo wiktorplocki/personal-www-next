@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { Button, ButtonGroup, Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ const Home = () => (
         <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
           <h4 className="mb-5 display-4">Frontend Developer</h4>
           <p className="mb-0">
-            I'm curious about the inner workings of things.
+            I&apos;m curious about the inner workings of things.
           </p>
           <p className="mb-5">
             Rather than overly flashy visuals, I focus on the build process and
@@ -29,7 +28,7 @@ const Home = () => (
               Learn About Me
             </Button>
             <Button className="text-uppeercase" tag={Link} to="/projects">
-              See Projects I've Been Working On
+              See Projects I&apos;ve Been Working On
             </Button>
             <Button className="text-uppeercase" tag={Link} to="/contact">
               Contact Me
