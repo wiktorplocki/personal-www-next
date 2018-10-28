@@ -7,7 +7,7 @@
     "build": "webpack --config=webpack.config.js --mode=production",
     "start:dev": "webpack-dev-server --mode=development",
     "start:prod": "webpack-dev-server",
-    "now-start": "yarn build && serve --single ./dist",
+    "now-start": "serve --single ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

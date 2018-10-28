@@ -8,12 +8,12 @@ const Home = () => (
   <main className="masthead text-center d-flex" id="masthead">
     <Container className="my-auto flex-center">
       <Row>
-        <Col lg="10" className="mx-auto">
+        <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
           <h1 className="text-uppercase">
             <strong>Wiktor Płocki</strong>
           </h1>
         </Col>
-        <Col lg="10" className="mx-auto">
+        <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
           <h4 className="mb-5 display-4">Frontend Developer</h4>
           <p className="mb-0">
             I'm curious about the inner workings of things.
@@ -23,7 +23,7 @@ const Home = () => (
             performance optimization.
           </p>
         </Col>
-        <Col lg="10" className="mx-auto">
+        <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
           <ButtonGroup size="md" vertical={window.innerWidth < 576}>
             <Button className="text-uppeercase" tag={Link} to="/about">
               Learn About Me
