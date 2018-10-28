@@ -7,6 +7,8 @@ import './stylesheets/main.scss';
 import Header from './components/Header/Header';
 
 const Home = lazy(() => import('./components/Home/Home'));
+const ProjectsList = lazy(() => import('./components/Projects/ProjectsList'));
+
 const App = () => (
   <Container fluid>
     <Row>
@@ -16,6 +18,7 @@ const App = () => (
             <Header />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/projects" component={ProjectsList} />
             </Switch>
           </Suspense>
         </Router>
