@@ -37,37 +37,35 @@ const Header = React.memo(function Header() {
               Projects
             </NavLink>
           </NavItem>
-          <NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Contact
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  <NavLink href="mailto:wiktor.plocki@gmail.com">
-                    <span>
-                      <i className="far fa-envelope" />
-                      <span> Email</span>
-                    </span>
-                  </NavLink>
-                </DropdownItem>
-                <DropdownItem>
-                  <NavLink href="https://github.com/wiktorplocki">
-                    <span>
-                      <i className="fab fa-github" />
-                      <span> GitHub</span>
-                    </span>
-                  </NavLink>
-                </DropdownItem>
-                <DropdownItem>
-                  <NavLink href="https://www.linkedin.com/in/wiktor-plocki/">
-                    <i className="fab fa-linkedin" />
-                    <span> LinkedIn</span>
-                  </NavLink>
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Contact
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>
+                <NavLink href="mailto:wiktor.plocki@gmail.com">
+                  <span>
+                    <i className="far fa-envelope" />
+                    <span> Email</span>
+                  </span>
+                </NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink href="https://github.com/wiktorplocki">
+                  <span>
+                    <i className="fab fa-github" />
+                    <span> GitHub</span>
+                  </span>
+                </NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink href="https://www.linkedin.com/in/wiktor-plocki/">
+                  <i className="fab fa-linkedin" />
+                  <span> LinkedIn</span>
+                </NavLink>
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Nav>
       </Collapse>
     </Navbar>
