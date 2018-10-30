@@ -7,7 +7,9 @@ import './stylesheets/main.scss';
 import Header from './components/Header/Header';
 
 const Home = lazy(() => import('./components/Home/Home'));
-const ProjectsList = lazy(() => import('./components/Projects/ProjectsList'));
+const ProjectsList = lazy(() =>
+  import('./components/Projects/ProjectsList/ProjectsList')
+);
 
 const App = () => (
   <Container fluid>
