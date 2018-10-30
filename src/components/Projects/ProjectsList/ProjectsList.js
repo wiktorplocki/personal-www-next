@@ -21,7 +21,7 @@ const ProjectsList = React.memo(function ProjectsList() {
       .then(res => fetchProjects(res.results));
   }, []);
   /* eslint no-return-assign: "error" */
-  useEffect(() => (document.title = `${document.title} - Projects`), []);
+  useEffect(() => (document.title = `Wiktor Płocki - Projects`), []);
   return (
     <Container>
       <Row>
