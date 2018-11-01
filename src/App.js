@@ -11,6 +11,9 @@ const Home = lazy(() => import('./components/Home/Home'));
 const ProjectsList = lazy(() =>
   import('./components/Projects/ProjectsList/ProjectsList')
 );
+const ProjectsDetail = lazy(() =>
+  import('./components/Projects/ProjectsDetail/ProjectsDetail')
+);
 
 const App = () => (
   <Container fluid>
@@ -22,6 +25,8 @@ const App = () => (
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/projects" component={ProjectsList} />
+              <Route path="/projects/:id" component={ProjectsDetail} />
+              <Route path="/detail" component={ProjectsDetail} />
             </Switch>
           </Suspense>
         </Router>

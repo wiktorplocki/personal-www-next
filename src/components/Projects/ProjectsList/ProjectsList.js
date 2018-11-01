@@ -4,22 +4,24 @@ import {
   CardImg,
   CardText,
   CardBody,
+  CardLink,
   CardTitle,
   Container,
   Col,
   Button,
   Row
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line prefer-arrow-callback
 const ProjectsList = React.memo(function ProjectsList() {
   // TODO: Implement API
   const [projects, fetchProjects] = useState([]);
-  useEffect(url => {
-    fetch(url, { mode: 'no-cors' })
-      .then(res => res.json())
-      .then(res => fetchProjects(res.results));
-  }, []);
+  // useEffect(url => {
+  //   fetch(url, { mode: 'no-cors' })
+  //     .then(res => res.json())
+  //     .then(res => fetchProjects(res.results));
+  // }, []);
   /* eslint no-return-assign: "error" */
   useEffect(() => (document.title = `Wiktor Płocki - Projects`), []);
   return (
@@ -36,7 +38,9 @@ const ProjectsList = React.memo(function ProjectsList() {
             <CardBody>
               <CardTitle>App Title</CardTitle>
               <CardText>Quick summary of the project</CardText>
-              <Button>Details</Button>
+              <CardLink tag={Link} to="/detail">
+                Details
+              </CardLink>
             </CardBody>
           </Card>
         </Col>
