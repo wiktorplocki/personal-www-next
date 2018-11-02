@@ -13,6 +13,9 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line prefer-arrow-callback
@@ -45,7 +48,7 @@ const Header = React.memo(function Header() {
               <DropdownItem>
                 <NavLink href="mailto:wiktor.plocki@gmail.com">
                   <span>
-                    <i className="far fa-envelope" />
+                    <FontAwesomeIcon icon={faEnvelope} />
                     <span> Email</span>
                   </span>
                 </NavLink>
@@ -53,14 +56,14 @@ const Header = React.memo(function Header() {
               <DropdownItem>
                 <NavLink href="https://github.com/wiktorplocki">
                   <span>
-                    <i className="fab fa-github" />
+                    <FontAwesomeIcon icon={faGithub} />
                     <span> GitHub</span>
                   </span>
                 </NavLink>
               </DropdownItem>
               <DropdownItem>
                 <NavLink href="https://www.linkedin.com/in/wiktor-plocki/">
-                  <i className="fab fa-linkedin" />
+                  <FontAwesomeIcon icon={faLinkedin} />
                   <span> LinkedIn</span>
                 </NavLink>
               </DropdownItem>
