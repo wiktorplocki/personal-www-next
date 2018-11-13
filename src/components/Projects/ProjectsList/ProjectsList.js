@@ -1,48 +1,45 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
-  CardImg,
   CardText,
   CardBody,
   CardLink,
   CardTitle,
   Container,
   Col,
-  Button,
   Row
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { environments } from '../../../environments';
 
 // eslint-disable-next-line prefer-arrow-callback
 const ProjectsList = React.memo(function ProjectsList() {
-  // TODO: Implement API
-  const [projects, fetchProjects] = useState([]);
-  // useEffect(url => {
-  //   fetch(url, { mode: 'no-cors' })
-  //     .then(res => res.json())
-  //     .then(res => fetchProjects(res.results));
-  // }, []);
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    fetch(environments.API_URL)
+      .then(res => res.json())
+      .then(res => setProjects(res));
+  }, []);
   /* eslint no-return-assign: "error" */
   useEffect(() => (document.title = `Wiktor Płocki - Projects`), []);
   return (
     <Container>
       <Row>
         <Col xl="4" lg="4" md="4" sm="4" xs="4">
-          <h1>Projects</h1>
-          <Card key={Math.random()}>
-            <CardImg
-              top
-              width="100%"
-              src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-            />
-            <CardBody>
-              <CardTitle>App Title</CardTitle>
-              <CardText>Quick summary of the project</CardText>
-              <CardLink tag={Link} to="/detail">
-                Details
-              </CardLink>
-            </CardBody>
-          </Card>
+          <h1 className="mt-5 mb-5">Projects</h1>
+          <section className="mb-3">
+            {projects.map(project => (
+              <Card key={Math.random()}>
+                <CardBody>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardText>{project.description}</CardText>
+                  <CardLink tag={Link} to={`/detail/${project.id}`}>
+                    Details
+                  </CardLink>
+                </CardBody>
+              </Card>
+            ))}
+          </section>
         </Col>
       </Row>
     </Container>
