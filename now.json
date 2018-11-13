@@ -1,0 +1,6 @@
+{
+  "env": {
+    "API_URL": "@personal-www-api-hook"
+  },
+  "version": 1
+}
