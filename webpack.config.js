@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = {
   entry: './src/App.js',
@@ -10,6 +12,19 @@ module.exports = {
     filename: 'main.[hash].js',
     chunkFilename: '[name].[hash].js'
   },
+  plugins: [
+    new MinifyPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new LodashModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.[hash].css',
+      chunkFilename: '[name].[hash].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new AsyncChunkNames()
+  ],
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -44,7 +59,10 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           plugins: ['lodash', '@babel/plugin-syntax-dynamic-import'],
-          presets: [['@babel/preset-env'], '@babel/preset-react']
+          presets: [
+            ['@babel/preset-env', { targets: { chrome: 68 } }],
+            '@babel/preset-react'
+          ]
         }
       },
       {
@@ -79,16 +97,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new LodashModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'styles.[hash].css',
-      chunkFilename: '[name].[hash].css'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new AsyncChunkNames()
-  ]
+  }
 };
