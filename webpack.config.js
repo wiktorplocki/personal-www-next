@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -13,8 +12,6 @@ module.exports = {
     chunkFilename: '[name].[hash].js'
   },
   plugins: [
-    new MinifyPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new LodashModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles.[hash].css',
@@ -23,9 +20,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new AsyncChunkNames()
+    new AsyncChunkNames(),
+    new MinifyPlugin()
   ],
   optimization: {
+    // splitChunks: {
+    //   chunks: 'all',
+    //   maxInitialRequests: Infinity,
+    //   minSize: 0,
+    //   cacheGroups: {
+    //     vendors: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       name(module) {
+    //         const packageName = module.context.match(
+    //           /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+    //         )[1];
+    //         return `npm.${packageName}`;
+    //       }
+    //     }
+    //   }
+    // },
     splitChunks: {
       cacheGroups: {
         default: false,
@@ -34,17 +48,10 @@ module.exports = {
           chunks: 'all',
           test: /node_modules/,
           priority: 20
-        },
-        common: {
-          name: 'common',
-          minChunks: 2,
-          chunks: 'async',
-          priority: 10,
-          reuseExistingChunk: true,
-          enforce: true
         }
       }
-    }
+    },
+    concatenateModules: true
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
