@@ -3033,7 +3033,7 @@ globby@^5.0.0:
 
 globby@^6.1.0:
   version "6.1.0"
-  resolved "https://registry.yarnpkg.com/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
+  resolved "http://registry.npmjs.org/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
     array-union "^1.0.1"
     glob "^7.0.3"
@@ -3055,7 +3055,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
 
 handle-thing@^1.2.5:
   version "1.2.5"
-  resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
+  resolved "http://registry.npmjs.org/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
 har-schema@^2.0.0:
   version "2.0.0"
@@ -5677,8 +5677,8 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.1.tgz#e2a303236cac54b04031fa7a5a79c7e701df852f"
 
 spdy-transport@^2.0.18:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-2.1.0.tgz#4bbb15aaffed0beefdd56ad61dbdc8ba3e2cb7a1"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-2.1.1.tgz#c54815d73858aadd06ce63001e7d25fa6441623b"
   dependencies:
     debug "^2.6.8"
     detect-node "^2.0.3"
@@ -6129,8 +6129,8 @@ url-loader@^1.1.2:
     schema-utils "^1.0.0"
 
 url-parse@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.3.tgz#bfaee455c889023219d757e045fa6a684ec36c15"
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.4.tgz#cac1556e95faa0303691fec5cf9d5a1bc34648f8"
   dependencies:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
