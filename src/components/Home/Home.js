@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 // eslint-disable-next-line prefer-arrow-callback
 const Home = () => {
   /* eslint no-return-assign: "error" */
-  useEffect(() => (document.title = `Wiktor Płocki`));
+  useEffect(() => {
+    try {
+      document.title = `Wiktor Płocki`;
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
   return (
     <main className="masthead text-center d-flex" id="masthead">
       <Container className="my-auto flex-center">
@@ -32,9 +38,6 @@ const Home = () => {
               </Button>
               <Button className="text-uppeercase" tag={Link} to="/projects">
                 See Projects I&apos;ve Been Working On
-              </Button>
-              <Button className="text-uppeercase" tag={Link} to="/contact">
-                Contact Me
               </Button>
             </ButtonGroup>
           </Col>

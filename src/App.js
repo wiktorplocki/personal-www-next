@@ -23,10 +23,17 @@ const App = () => (
           <Suspense fallback={<Loading />}>
             <Header />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/projects" component={ProjectsList} />
-              <Route path="/projects/:id" component={ProjectsDetail} />
-              <Route path="/detail" component={ProjectsDetail} />
+              <Route exact path="/" component={() => <Home />} />
+              <Route
+                exact
+                path="/projects"
+                component={() => <ProjectsList />}
+              />
+              <Route
+                exact
+                path="/projects/:id"
+                render={props => <ProjectsDetail {...props} />}
+              />
             </Switch>
           </Suspense>
         </Router>

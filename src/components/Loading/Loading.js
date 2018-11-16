@@ -3,7 +3,13 @@ import { Container, Row, Col } from 'reactstrap';
 
 const Loading = () => {
   /* eslint no-return-assign: "error" */
-  useEffect(() => (document.title = `Wiktor Płocki - Loading...`));
+  useEffect(() => {
+    try {
+      document.title = 'Wiktor Płocki - Loading...';
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
   return (
     <div className="masthead text-center d-flex">
       <Container className="my-auto flex-center">

@@ -15,13 +15,23 @@ import { environments } from '../../../environments';
 // eslint-disable-next-line prefer-arrow-callback
 const ProjectsList = React.memo(function ProjectsList() {
   const [projects, setProjects] = useState([]);
+  // useEffect(() => async () =>
+  //   setProjects(await (await fetch(environments.API_URL)).json().results)
+  // );
   useEffect(() => {
     fetch(environments.API_URL)
       .then(res => res.json())
       .then(res => setProjects(res));
   }, []);
   /* eslint no-return-assign: "error" */
-  useEffect(() => (document.title = `Wiktor Płocki - Projects`), []);
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    try {
+      document.title = 'Wiktor Płocki - Projects';
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
   return (
     <Container>
       <Row>
@@ -33,7 +43,7 @@ const ProjectsList = React.memo(function ProjectsList() {
                 <CardBody>
                   <CardTitle>{project.title}</CardTitle>
                   <CardText>{project.description}</CardText>
-                  <CardLink tag={Link} to={`/detail/${project.id}`}>
+                  <CardLink tag={Link} to={`/projects/${project.id}`}>
                     Details
                   </CardLink>
                 </CardBody>
