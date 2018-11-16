@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import {
   Card,
   CardText,
@@ -9,6 +10,8 @@ import {
   Col,
   Row
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { environments } from '../../../environments';
 
@@ -38,17 +41,28 @@ const ProjectsList = React.memo(function ProjectsList() {
         <Col xl="4" lg="4" md="4" sm="4" xs="4">
           <h1 className="mt-5 mb-5">Projects</h1>
           <section className="mb-3">
-            {projects.map(project => (
-              <Card key={Math.random()}>
-                <CardBody>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardText>{project.description}</CardText>
-                  <CardLink tag={Link} to={`/projects/${project.id}`}>
-                    Details
-                  </CardLink>
-                </CardBody>
-              </Card>
-            ))}
+            {_.isEmpty(projects) ? (
+              <h2>
+                <span>
+                  <FontAwesomeIcon icon={faCircleNotch} spin />
+                </span>
+                <span> Fetching projects...</span>
+              </h2>
+            ) : (
+              <React.Fragment>
+                {projects.map(project => (
+                  <Card key={Math.random()}>
+                    <CardBody>
+                      <CardTitle>{project.title}</CardTitle>
+                      <CardText>{project.description}</CardText>
+                      <CardLink tag={Link} to={`/projects/${project.id}`}>
+                        Details
+                      </CardLink>
+                    </CardBody>
+                  </Card>
+                ))}
+              </React.Fragment>
+            )}
           </section>
         </Col>
       </Row>

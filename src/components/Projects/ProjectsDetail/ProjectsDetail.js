@@ -11,12 +11,12 @@ import {
   Container,
   Row
 } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { environments } from '../../../environments';
 
-import Loading from '../../Loading/Loading';
-
 const ProjectsDetail = ({ match }) => {
-  const [project, setProject] = useState();
+  const [project, setProject] = useState(null);
   useEffect(() => {
     fetch(`${environments.API_URL}/${match.params.id}`)
       .then(res => res.json())
@@ -30,29 +30,36 @@ const ProjectsDetail = ({ match }) => {
       document.title = `Wiktor Płocki - Project: ${project.title}`;
     } catch (e) {} // eslint-disable-line no-empty
   });
-  if (!project) {
-    return <Loading />;
-  }
   return (
     <Container>
       <Row>
         <Col xl="12" lg="12" md="12" sm="12" xs="12">
           <Card>
             <CardBody>
-              <CardTitle>{project.title}</CardTitle>
-              <CardSubtitle>Technologies:</CardSubtitle>
-              <CardText>
-                {project.technologies.map(
-                  tech =>
-                    tech === _.last(project.technologies) ? (
-                      <span key={Math.random()}>{tech}.</span>
-                    ) : (
-                      <span key={Math.random()}>{tech}, </span>
-                    )
-                )}
-              </CardText>
-              <CardSubtitle>Description:</CardSubtitle>
-              <CardText>{project.description}</CardText>
+              {_.isNil(project) ? (
+                <div className="d-flex justify-content-center align-items-center">
+                  <h2>
+                    <FontAwesomeIcon icon={faCircleNotch} spin />
+                  </h2>
+                </div>
+              ) : (
+                <React.Fragment>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardSubtitle>Technologies:</CardSubtitle>
+                  <CardText>
+                    {project.technologies.map(
+                      tech =>
+                        tech === _.last(project.technologies) ? (
+                          <span key={Math.random()}>{tech}.</span>
+                        ) : (
+                          <span key={Math.random()}>{tech}, </span>
+                        )
+                    )}
+                  </CardText>
+                  <CardSubtitle>Description:</CardSubtitle>
+                  <CardText>{project.description}</CardText>
+                </React.Fragment>
+              )}
             </CardBody>
           </Card>
         </Col>
