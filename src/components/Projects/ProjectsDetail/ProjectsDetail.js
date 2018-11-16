@@ -45,6 +45,12 @@ const ProjectsDetail = ({ match }) => {
               ) : (
                 <React.Fragment>
                   <CardTitle>{project.title}</CardTitle>
+                  {_.isEmpty(project.client) ? null : (
+                    <React.Fragment>
+                      <CardSubtitle>Client:</CardSubtitle>
+                      <CardText>{project.client}</CardText>
+                    </React.Fragment>
+                  )}
                   <CardSubtitle>Technologies:</CardSubtitle>
                   <CardText>
                     {project.technologies.map(
