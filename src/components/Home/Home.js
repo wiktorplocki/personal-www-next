@@ -33,10 +33,10 @@ const Home = () => {
           </Col>
           <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
             <ButtonGroup size="md" vertical={window.innerWidth < 576}>
-              <Button className="text-uppeercase" tag={Link} to="/about">
+              <Button className="text-uppercase" tag={Link} to="/about">
                 Learn About Me
               </Button>
-              <Button className="text-uppeercase" tag={Link} to="/projects">
+              <Button className="text-uppercase" tag={Link} to="/projects">
                 See Projects I&apos;ve Been Working On
               </Button>
             </ButtonGroup>

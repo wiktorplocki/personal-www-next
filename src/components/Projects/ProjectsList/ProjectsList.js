@@ -38,7 +38,7 @@ const ProjectsList = React.memo(function ProjectsList() {
   return (
     <Container>
       <Row>
-        <Col xl="4" lg="4" md="4" sm="4" xs="4">
+        <Col xl="4" lg="4" md="4" sm="6" xs="12">
           <h1 className="mt-5 mb-5">Projects</h1>
           <section className="mb-3">
             {_.isEmpty(projects) ? (
@@ -58,6 +58,7 @@ const ProjectsList = React.memo(function ProjectsList() {
                       <CardLink tag={Link} to={`/projects/${project.id}`}>
                         Details
                       </CardLink>
+                      <CardLink href={project.project_url}>Link</CardLink>
                     </CardBody>
                   </Card>
                 ))}

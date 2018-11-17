@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {
   Card,
   CardBody,
+  CardLink,
   CardText,
   CardTitle,
   CardSubtitle,
@@ -64,6 +65,7 @@ const ProjectsDetail = ({ match }) => {
                   </CardText>
                   <CardSubtitle>Description:</CardSubtitle>
                   <CardText>{project.description}</CardText>
+                  <CardLink href={project.project_url}>Link</CardLink>
                 </React.Fragment>
               )}
             </CardBody>
