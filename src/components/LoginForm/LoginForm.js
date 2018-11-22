@@ -64,7 +64,11 @@ const LoginForm = () => {
                 color="primary"
                 onClick={e => {
                   e.preventDefault();
-                  handleLogin('http://localhost:3000', username, password);
+                  handleLogin(
+                    'http://localhost:3000/v1/users/',
+                    username,
+                    password
+                  );
                 }}
                 className="w-100"
               >
