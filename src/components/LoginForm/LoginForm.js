@@ -18,11 +18,11 @@ const LoginForm = () => {
     try {
       document.title = `Wiktor Płocki - Login`;
     } catch (e) {
-      console.error(e);
+      console.error(e); // eslint-disable-line no-console
     }
   }, []);
-  const handleLogin = (authUrl, plaintextField, passwordField) => {
-    return fetch(authUrl, {
+  const handleLogin = (authUrl, plaintextField, passwordField) =>
+    fetch(authUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,7 +30,6 @@ const LoginForm = () => {
         password: passwordField
       })
     });
-  };
   return (
     <main className="masthead d-flex">
       <Container className="my-auto text-center flex-center">
