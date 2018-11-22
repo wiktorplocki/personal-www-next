@@ -77,6 +77,13 @@ const Header = React.memo(function Header() {
               {localStorage.getItem('user') ? `Logout` : `Login`}
             </NavLink>
           </NavItem>
+          {localStorage.getItem('user') ? (
+            <NavItem>
+              <NavLink tag={Link} to="/admin">
+                Admin
+              </NavLink>
+            </NavItem>
+          ) : null}
         </Nav>
       </Collapse>
     </Navbar>
