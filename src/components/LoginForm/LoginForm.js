@@ -61,10 +61,12 @@ const LoginForm = () => {
               </FormGroup>
               <Button
                 type="submit"
+                color="primary"
                 onClick={e => {
                   e.preventDefault();
                   handleLogin('http://localhost:3000', username, password);
                 }}
+                className="w-100"
               >
                 Submit
               </Button>
