@@ -7,6 +7,7 @@ import './stylesheets/main.scss';
 import Header from './components/Header/Header';
 import Loading from './components/Loading/Loading';
 import NotFound from './components/NotFound/NotFound';
+import LoginForm from './components/LoginForm/LoginForm';
 
 const Home = lazy(() => import('./components/Home/Home'));
 const ProjectsList = lazy(() =>
@@ -35,6 +36,7 @@ const App = () => (
                 path="/projects/:id"
                 render={props => <ProjectsDetail {...props} />}
               />
+              <Route exact path="/login" render={() => <LoginForm />} />
               <Route exact path="*" component={() => <NotFound />} />
             </Switch>
           </Suspense>
