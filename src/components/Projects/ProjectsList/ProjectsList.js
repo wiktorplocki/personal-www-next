@@ -38,7 +38,7 @@ const ProjectsList = React.memo(function ProjectsList() {
   return (
     <Container>
       <Row>
-        <Col xl="4" lg="4" md="4" sm="6" xs="12">
+        <Col>
           <h1 className="mt-5 mb-5">Projects</h1>
           <section className="mb-3">
             {_.isEmpty(projects) ? (
@@ -49,20 +49,22 @@ const ProjectsList = React.memo(function ProjectsList() {
                 <span> Fetching projects...</span>
               </h2>
             ) : (
-              <React.Fragment>
+              <Row>
                 {projects.map(project => (
-                  <Card key={Math.random()}>
-                    <CardBody>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardText>{project.description}</CardText>
-                      <CardLink tag={Link} to={`/projects/${project.id}`}>
-                        Details
-                      </CardLink>
-                      <CardLink href={project.project_url}>Link</CardLink>
-                    </CardBody>
-                  </Card>
+                  <Col md="6" xs="12">
+                    <Card key={Math.random()}>
+                      <CardBody>
+                        <CardTitle>{project.title}</CardTitle>
+                        <CardText>{project.description}</CardText>
+                        <CardLink tag={Link} to={`/projects/${project.id}`}>
+                          Details
+                        </CardLink>
+                        <CardLink href={project.project_url}>Link</CardLink>
+                      </CardBody>
+                    </Card>
+                  </Col>
                 ))}
-              </React.Fragment>
+              </Row>
             )}
           </section>
         </Col>
