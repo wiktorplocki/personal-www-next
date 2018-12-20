@@ -9,9 +9,10 @@ import {
   Label,
   Row
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line prefer-arrow-callback
-const LoginForm = () => {
+const LoginForm = ({ history }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   useEffect(() => {
@@ -29,7 +30,16 @@ const LoginForm = () => {
         username: plaintextField,
         password: passwordField
       })
-    });
+    })
+      .then(res => res.json())
+      .then(
+        result =>
+          result ? localStorage.setItem('wiktorplocki_token', result) : null
+      )
+      .then(
+        () =>
+          localStorage.getItem('wiktorplocki_token') ? history.push('/') : null
+      );
   return (
     <main className="masthead d-flex">
       <Container className="my-auto text-center flex-center">
@@ -82,4 +92,7 @@ const LoginForm = () => {
   );
 };
 
+LoginForm.propTypes = {
+  history: PropTypes.shape().isRequired
+};
 export default LoginForm;

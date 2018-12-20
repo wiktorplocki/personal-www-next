@@ -9,19 +9,13 @@ import Loading from './components/Loading/Loading';
 import NotFound from './components/NotFound/NotFound';
 
 const Home = lazy(() => import('./components/Home/Home'));
+const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
 const Projects = {
   List: lazy(() => import('./components/Projects/ProjectsList/ProjectsList')),
   Detail: lazy(() =>
     import('./components/Projects/ProjectsDetail/ProjectsDetail')
   )
 };
-// const ProjectsList = lazy(() =>
-//   import('./components/Projects/ProjectsList/ProjectsList')
-// );
-// const ProjectsDetail = lazy(() =>
-//   import('./components/Projects/ProjectsDetail/ProjectsDetail')
-// );
-const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
 const Admin = {
   Dashboard: lazy(() => import('./components/Admin/Dashboard/AdminDashboard'))
 };
@@ -41,7 +35,11 @@ const App = () => (
                 path="/projects/:id"
                 render={props => <Projects.Detail {...props} />}
               />
-              <Route exact path="/login" render={() => <LoginForm />} />
+              <Route
+                exact
+                path="/login"
+                render={props => <LoginForm {...props} />}
+              />
               <Route exact path="/admin" render={() => <Admin.Dashboard />} />
               <Route exact path="*" render={() => <NotFound />} />
             </Switch>

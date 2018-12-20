@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Nav, NavItem, NavLink, Row } from 'reactstrap';
+import shortid from 'shortid';
 
 // eslint-disable-next-line prefer-arrow-callback
 const AdminDashboard = () => {
@@ -21,6 +22,7 @@ const AdminDashboard = () => {
               <NavItem
                 active={activeNavItem === index}
                 onClick={() => setActiveNavItem(index)}
+                key={shortid.generate()}
               >
                 <NavLink href="#" active={activeNavItem === index}>
                   {tab}
