@@ -79,5 +79,9 @@ const ProjectsDetail = ({ match }) => {
 export default ProjectsDetail;
 
 ProjectsDetail.propTypes = {
-  match: PropTypes.shape.isRequired
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 };
