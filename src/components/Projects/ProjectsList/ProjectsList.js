@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
+import shortid from 'shortid';
 import {
   Card,
   CardText,
@@ -36,7 +37,7 @@ const ProjectsList = React.memo(function ProjectsList() {
     }
   }, []);
   return (
-    <Container>
+    <Container className="ProjectsList">
       <Row>
         <Col>
           <h1 className="mt-5 mb-5">Projects</h1>
@@ -52,7 +53,7 @@ const ProjectsList = React.memo(function ProjectsList() {
               <Row>
                 {projects.map(project => (
                   <Col md="6" xs="12">
-                    <Card key={Math.random()}>
+                    <Card className="project-card" key={shortid.generate()}>
                       <CardBody>
                         <CardTitle>{project.title}</CardTitle>
                         <CardText>{project.description}</CardText>
