@@ -69,21 +69,6 @@ const Header = React.memo(function Header() {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-          <NavItem>
-            <NavLink
-              tag={Link}
-              to={localStorage.getItem('user') ? '/logout' : '/login'}
-            >
-              {localStorage.getItem('user') ? `Logout` : `Login`}
-            </NavLink>
-          </NavItem>
-          {localStorage.getItem('user') ? (
-            <NavItem>
-              <NavLink tag={Link} to="/admin">
-                Admin
-              </NavLink>
-            </NavItem>
-          ) : null}
         </Nav>
       </Collapse>
     </Navbar>
