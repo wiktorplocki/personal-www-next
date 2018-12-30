@@ -32,7 +32,7 @@ const Home = () => {
             </p>
           </Col>
           <Col xl="12" lg="12" md="12" sm="12" xs="12" className="mx-auto">
-            <ButtonGroup size="md" vertical={window.innerWidth < 576}>
+            <ButtonGroup size="md">
               <Button className="text-uppercase" tag={Link} to="/about">
                 Learn About Me
               </Button>
