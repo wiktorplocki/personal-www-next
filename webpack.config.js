@@ -4,6 +4,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: './src/App.js',
@@ -17,6 +18,7 @@ module.exports = {
       filename: 'styles.[hash].css',
       chunkFilename: '[name].[hash].css'
     }),
+    new OptimizeCssAssetsPlugin({}),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
