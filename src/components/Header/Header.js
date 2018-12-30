@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Collapse,
   Nav,
@@ -75,9 +74,39 @@ const Header = React.memo(function Header() {
   );
 });
 
-Header.propTypes = {
-  collapsed: PropTypes.bool,
-  toggleCollapsed: PropTypes.func
-};
+// React-Bootstrap port
+
+// const Header = () => (
+//   <Navbar bg="faded" expand="md">
+//     <Navbar.Brand href="/">Wiktor Płocki</Navbar.Brand>
+//     <Navbar.Toggle className="mr-2" />
+//     <Navbar.Collapse id="collapse">
+//       <Nav className="ml-auto">
+//         <Nav.Link href="/">Home</Nav.Link>
+//         <Nav.Link href="/projects">Projects</Nav.Link>
+//         <NavDropdown title="Contact" id="dropdown">
+//           <NavDropdown.Item href="mailto:wiktor.plocki@gmail.com">
+//             <span>
+//               <FontAwesomeIcon icon={faEnvelope} />
+//               <span> Email</span>
+//             </span>
+//           </NavDropdown.Item>
+//           <NavDropdown.Item href="https://github.com/wiktorplocki">
+//             <span>
+//               <FontAwesomeIcon icon={faGithub} />
+//               <span> GitHub</span>
+//             </span>
+//           </NavDropdown.Item>
+//           <NavDropdown.Item href="https://www.linkedin.com/in/wiktor-plocki/">
+//             <span>
+//               <FontAwesomeIcon icon={faLinkedin} />
+//               <span> LinkedIn</span>
+//             </span>
+//           </NavDropdown.Item>
+//         </NavDropdown>
+//       </Nav>
+//     </Navbar.Collapse>
+//   </Navbar>
+// );
 
 export default Header;
