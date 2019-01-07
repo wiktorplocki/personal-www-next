@@ -33,7 +33,7 @@ const ProjectsList = React.memo(function ProjectsList() {
     try {
       document.title = 'Wiktor Płocki - Projects';
     } catch (e) {
-      console.error(e);
+      console.error(e); // eslint-disable-line no-console
     }
   }, []);
   return (

@@ -19,7 +19,7 @@ import { environments } from '../../../environments';
 const ProjectsDetail = ({ match }) => {
   const [project, setProject] = useState(null);
   useEffect(() => {
-    fetch(`${environments.API_URL}/${match.params.id}`)
+    fetch(`${environments.API_URL}${match.params.id}`)
       .then(res => res.json())
       .then(res => setProject(res));
   }, []);
