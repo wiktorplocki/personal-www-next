@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   Button,
   Col,
@@ -9,12 +9,11 @@ import {
   Label,
   Row
 } from 'reactstrap';
-import PropTypes from 'prop-types';
 
 // eslint-disable-next-line prefer-arrow-callback
-const LoginForm = ({ history }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = () => {
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
   useEffect(() => {
     try {
       document.title = `Wiktor Płocki - Login`;
@@ -22,24 +21,21 @@ const LoginForm = ({ history }) => {
       console.error(e); // eslint-disable-line no-console
     }
   }, []);
-  const handleLogin = (authUrl, plaintextField, passwordField) =>
-    fetch(authUrl, {
+  const handleLogin = e => {
+    e.preventDefault();
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
+    fetch('http://localhost:3000/v1/users/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: plaintextField,
-        password: passwordField
-      })
+      body: JSON.stringify({ username, password })
     })
       .then(res => res.json())
-      .then(
-        result =>
-          result ? localStorage.setItem('wiktorplocki_token', result) : null
-      )
-      .then(
-        () =>
-          localStorage.getItem('wiktorplocki_token') ? history.push('/') : null
-      );
+      .then(result => console.log(result))
+      .catch(err => {
+        console.error(err); // eslint-disable-line no-console
+      });
+  };
   return (
     <main className="masthead d-flex">
       <Container className="my-auto text-center flex-center">
@@ -51,13 +47,13 @@ const LoginForm = ({ history }) => {
             sm={{ size: 6, offset: 3 }}
             xs={{ size: 6, offset: 3 }}
           >
-            <Form>
+            <Form onSubmit={handleLogin}>
               <FormGroup>
                 <Label for="username">Username</Label>
                 <Input
                   id="username"
-                  onChange={e => setUsername(e.target.value)}
                   placeholder="Username"
+                  innerRef={usernameRef}
                 />
               </FormGroup>
               <FormGroup>
@@ -65,23 +61,11 @@ const LoginForm = ({ history }) => {
                 <Input
                   type="password"
                   id="password"
-                  onChange={e => setPassword(e.target.value)}
                   placeholder="Password"
+                  innerRef={passwordRef}
                 />
               </FormGroup>
-              <Button
-                type="submit"
-                color="primary"
-                onClick={e => {
-                  e.preventDefault();
-                  handleLogin(
-                    'http://localhost:3000/v1/users/',
-                    username,
-                    password
-                  );
-                }}
-                className="w-100"
-              >
+              <Button type="submit" color="primary" className="w-100">
                 Submit
               </Button>
             </Form>
@@ -92,7 +76,4 @@ const LoginForm = ({ history }) => {
   );
 };
 
-LoginForm.propTypes = {
-  history: PropTypes.shape().isRequired
-};
 export default LoginForm;
