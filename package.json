@@ -55,6 +55,7 @@
     "@fortawesome/react-fontawesome": "^0.1.3",
     "bootstrap": "^4.1.3",
     "lodash": "^4.17.11",
+    "now-env": "^3.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1",
