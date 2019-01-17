@@ -1,8 +1,20 @@
 {
+  "version": 2,
+  "alias": ["wiktorplocki.now.sh"],
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    { "src": "/login", "dest": "index.html" },
+    { "src": "/admin", "dest": "index.html" }
+  ],
+  "static": {
+    "rewrites": [
+      { "source": "/**", "destination": "index.html" }
+    ]
+  },
   "env": {
     "API_URL": "@personal-www-api-hook",
     "GRAPHQL_URL": "@personal-www-graphql-hook"
-  },
-  "version": 1,
-  "alias": "wiktorplocki"
+  }
 }
