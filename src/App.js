@@ -14,8 +14,6 @@ import Header from './components/Header/Header';
 import Loading from './components/Loading/Loading';
 import NotFound from './components/NotFound/NotFound';
 
-require('now-env');
-
 const Home = lazy(() => import('./components/Home/Home'));
 const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
 const Projects = {
