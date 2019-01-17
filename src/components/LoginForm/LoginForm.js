@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import {
   Button,
   Col,
@@ -9,10 +9,12 @@ import {
   Label,
   Row
 } from 'reactstrap';
+import AuthContext from '../../context/AuthContext';
 
 // eslint-disable-next-line prefer-arrow-callback
 const LoginForm = () => {
-  const usernameRef = useRef(null);
+  const { login } = useContext(AuthContext);
+  const emailRef = useRef(null);
   const passwordRef = useRef(null);
   useEffect(() => {
     try {
@@ -23,15 +25,23 @@ const LoginForm = () => {
   }, []);
   const handleLogin = e => {
     e.preventDefault();
-    const username = usernameRef.current.value;
+    const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    fetch('http://localhost:3000/v1/users/', {
+    const query = `query {
+      login(email: "${email}", password: "${password}") {
+        token
+        tokenExpiry
+      }
+    }`;
+    fetch(process.env.GRAPHQL_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ query })
     })
       .then(res => res.json())
-      .then(result => console.log(result))
+      .then(result =>
+        login(result.data.login.token, result.data.login.tokenExpiry)
+      )
       .catch(err => {
         console.error(err); // eslint-disable-line no-console
       });
@@ -49,12 +59,8 @@ const LoginForm = () => {
           >
             <Form onSubmit={handleLogin}>
               <FormGroup>
-                <Label for="username">Username</Label>
-                <Input
-                  id="username"
-                  placeholder="Username"
-                  innerRef={usernameRef}
-                />
+                <Label for="email">Email</Label>
+                <Input id="email" placeholder="Email" innerRef={emailRef} />
               </FormGroup>
               <FormGroup>
                 <Label for="password">Password</Label>
