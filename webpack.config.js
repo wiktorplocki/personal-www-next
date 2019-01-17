@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/App.js',
@@ -23,7 +24,8 @@ module.exports = {
       template: './src/index.html'
     }),
     new AsyncChunkNames(),
-    new MinifyPlugin()
+    new MinifyPlugin(),
+    new Dotenv()
   ],
   optimization: {
     // splitChunks: {
