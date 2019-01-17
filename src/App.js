@@ -63,12 +63,18 @@ const App = () => {
                     render={props => <Projects.Detail {...props} />}
                   />
                   <Route exact path="/login" render={() => <LoginForm />} />
-                  <Route
-                    exact
-                    path="/admin"
-                    render={() => <Admin.Dashboard />}
-                  />
-                  {!token && <Redirect from="/logout" to="/" />}
+                  {token && (
+                    <Route
+                      exact
+                      path="/admin"
+                      render={() => <Admin.Dashboard />}
+                    />
+                  )}
+                  {!token && (
+                    <Route exact path="/admin" render={() => <NotFound />} />
+                  )}
+                  {!token && <Redirect exact from="/logout" to="/" />}
+                  {token && <Redirect exact from="/login" to="/" />}
                   <Route exact path="*" render={() => <NotFound />} />
                 </Switch>
               </AuthContext.Provider>
