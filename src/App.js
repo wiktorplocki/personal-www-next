@@ -63,7 +63,9 @@ const App = () => {
                     path="/projects/:id"
                     render={props => <Projects.Detail {...props} />}
                   />
-                  <Route exact path="/login" render={() => <LoginForm />} />
+                  {!token && (
+                    <Route exact path="/login" render={() => <LoginForm />} />
+                  )}
                   {token && <Redirect exact from="/login" to="/" />}
                   {token && (
                     <Route
