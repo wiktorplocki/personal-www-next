@@ -1,0 +1,11 @@
+.footer {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  li {
+    padding: 0 0.25rem;
+    a.footer--login {
+      color: rgba(0, 0, 0, 0.02);
+    }
+  }
+}

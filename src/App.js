@@ -11,6 +11,7 @@ import './stylesheets/main.scss';
 
 import AuthContext from './context/AuthContext';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Loading from './components/Loading/Loading';
 import NotFound from './components/NotFound/NotFound';
 
@@ -63,6 +64,7 @@ const App = () => {
                     render={props => <Projects.Detail {...props} />}
                   />
                   <Route exact path="/login" render={() => <LoginForm />} />
+                  {token && <Redirect exact from="/login" to="/" />}
                   {token && (
                     <Route
                       exact
@@ -74,9 +76,9 @@ const App = () => {
                     <Route exact path="/admin" render={() => <NotFound />} />
                   )}
                   {!token && <Redirect exact from="/logout" to="/" />}
-                  {token && <Redirect exact from="/login" to="/" />}
                   <Route exact path="*" render={() => <NotFound />} />
                 </Switch>
+                <Footer />
               </AuthContext.Provider>
             </Suspense>
           </Router>
