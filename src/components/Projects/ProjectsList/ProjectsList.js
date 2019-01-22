@@ -14,18 +14,32 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { environments } from '../../../environments';
 
 // eslint-disable-next-line prefer-arrow-callback
-const ProjectsList = React.memo(function ProjectsList() {
+const ProjectsList = () => {
   const [projects, setProjects] = useState([]);
+  const query = `query {
+    projects {
+      _id
+      name
+      client
+      description
+      technologies {
+        label
+      }
+    }
+  }`;
   // useEffect(() => async () =>
   //   setProjects(await (await fetch(environments.API_URL)).json().results)
   // );
   useEffect(() => {
-    fetch(environments.API_URL)
+    fetch(process.env.GRAPHQL_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query })
+    })
       .then(res => res.json())
-      .then(res => setProjects(res));
+      .then(result => setProjects(result.data.projects));
   }, []);
   /* eslint no-return-assign: "error" */
   // eslint-disable-next-line consistent-return
@@ -52,15 +66,17 @@ const ProjectsList = React.memo(function ProjectsList() {
             ) : (
               <Row>
                 {projects.map(project => (
-                  <Col md="6" xs="12">
+                  <Col md="6" xs="12" key={shortid.generate()}>
                     <Card className="project-card" key={shortid.generate()}>
                       <CardBody>
-                        <CardTitle>{project.title}</CardTitle>
+                        <CardTitle>{project.name}</CardTitle>
                         <CardText>{project.description}</CardText>
-                        <CardLink tag={Link} to={`/projects/${project.id}`}>
+                        <CardLink tag={Link} to={`/projects/${project._id}`}>
                           Details
                         </CardLink>
-                        <CardLink href={project.project_url}>Link</CardLink>
+                        <CardLink href={`/projects/${project._id}`}>
+                          Link
+                        </CardLink>
                       </CardBody>
                     </Card>
                   </Col>
@@ -72,6 +88,6 @@ const ProjectsList = React.memo(function ProjectsList() {
       </Row>
     </Container>
   );
-});
+};
 
 export default ProjectsList;

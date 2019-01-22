@@ -14,21 +14,35 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { environments } from '../../../environments';
 
 const ProjectsDetail = ({ match }) => {
   const [project, setProject] = useState(null);
+  const query = `query {
+    singleProject(projectId: "${match.params.id}") {
+      name
+      client
+      description
+      link
+      technologies {
+        label
+      }
+    }
+  }`;
   useEffect(() => {
-    fetch(`${environments.API_URL}${match.params.id}`)
+    fetch(`${process.env.GRAPHQL_URL}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query })
+    })
       .then(res => res.json())
-      .then(res => setProject(res));
+      .then(result => setProject(result.data.singleProject));
   }, []);
   // 1108x700
   /* eslint no-return-assign: "error" */
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     try {
-      document.title = `Wiktor Płocki - Project: ${project.title}`;
+      document.title = `Wiktor Płocki - Project: ${project.name}`;
     } catch (e) {} // eslint-disable-line no-empty
   });
   return (
@@ -45,7 +59,7 @@ const ProjectsDetail = ({ match }) => {
                 </div>
               ) : (
                 <React.Fragment>
-                  <CardTitle>{project.title}</CardTitle>
+                  <CardTitle>{project.name}</CardTitle>
                   {_.isEmpty(project.client) ? null : (
                     <React.Fragment>
                       <CardSubtitle>Client:</CardSubtitle>
@@ -57,15 +71,15 @@ const ProjectsDetail = ({ match }) => {
                     {project.technologies.map(
                       tech =>
                         tech === _.last(project.technologies) ? (
-                          <span key={Math.random()}>{tech}.</span>
+                          <span key={Math.random()}>{tech.label}.</span>
                         ) : (
-                          <span key={Math.random()}>{tech}, </span>
+                          <span key={Math.random()}>{tech.label}, </span>
                         )
                     )}
                   </CardText>
                   <CardSubtitle>Description:</CardSubtitle>
                   <CardText>{project.description}</CardText>
-                  <CardLink href={project.project_url}>Link</CardLink>
+                  <CardLink href={project.link}>Link</CardLink>
                 </React.Fragment>
               )}
             </CardBody>
