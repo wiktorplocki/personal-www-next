@@ -2,4 +2,13 @@
   .project-card {
     min-height: 190px;
   }
+  .admin-icon {
+    color: $gray;
+    &:hover {
+      color: $black;
+    }
+  }
+  .card-text-box {
+    min-height: 4.5rem;
+  }
 }
