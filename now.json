@@ -5,8 +5,11 @@
     { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
+    { "src": "/about", "dest": "index.html" },
     { "src": "/login", "dest": "index.html" },
-    { "src": "/admin", "dest": "index.html" }
+    { "src": "/admin", "dest": "index.html" },
+    { "src": "/projects", "dest": "index.html" },
+    { "src": "/projects/**", "dest": "index.html" }
   ],
   "static": {
     "rewrites": [
