@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import shortid from 'shortid';
 import {
   Card,
   CardBody,
@@ -71,9 +72,9 @@ const ProjectsDetail = ({ match }) => {
                     {project.technologies.map(
                       tech =>
                         tech === _.last(project.technologies) ? (
-                          <span key={Math.random()}>{tech.label}.</span>
+                          <span key={shortid.generate()}>{tech.label}.</span>
                         ) : (
-                          <span key={Math.random()}>{tech.label}, </span>
+                          <span key={shortid.generate()}>{tech.label}, </span>
                         )
                     )}
                   </CardText>
